@@ -2,12 +2,10 @@ package com.xuanyuan.epubdemo;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +13,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.xuanyuan.epubdemo.databinding.ActivityMainBinding;
-import com.xuanyuan.epubdemo.entity.BookBean;
-import com.xuanyuan.epubdemo.entity.EpubBean;
-import com.xuanyuan.epubdemo.utils.StringUtils;
+import com.xuanyuan.epublib.BookHelper;
+import com.xuanyuan.epublib.StringUtils;
+import com.xuanyuan.epublib.entity.BookBean;
+import com.xuanyuan.epublib.entity.EpubBean;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import nl.siegmann.epublib.domain.Book;
 import nl.siegmann.epublib.domain.Resource;
@@ -74,14 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
     /**
      * 初始化数据
      */
     private void initData() {
 
         new Thread(() -> {
-            try {
 
                 EpubReader reader = new EpubReader();
                 InputStream in = helper.getInputStream(context, index);
@@ -99,9 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     handler.sendEmptyMessage(101);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }).start();
     }
 
@@ -111,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAdatper = new MyAdatper(indexTitleList, this);
         binding.recycler.setAdapter(mAdatper);
     }
-
 
 
     /**

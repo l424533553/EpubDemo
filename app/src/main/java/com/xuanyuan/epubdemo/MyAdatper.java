@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xuanyuan.epubdemo.entity.EpubBean;
+import com.xuanyuan.epublib.entity.EpubBean;
 
 import java.util.List;
 

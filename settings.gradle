@@ -1,3 +1,4 @@
+include ':epublib'
 include ':app'
 //include ':epublibrary'
 rootProject.name = "EpubDemo"
