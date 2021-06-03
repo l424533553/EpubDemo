@@ -1,0 +1,162 @@
+com.xuanyuan.pdfviewer.RenderingHandler:
+    public static final int MSG_RENDER_TASK
+com.xuanyuan.pdfviewer.util.Constants:
+    public void <init>()
+com.xuanyuan.pdfviewer.util.Constants$Cache:
+    public void <init>()
+com.xuanyuan.pdfviewer.BuildConfig
+com.xuanyuan.pdfviewer.util.FileUtils:
+    private void <init>()
+com.xuanyuan.pdfviewer.util.Constants$Pinch:
+    public void <init>()
+com.xuanyuan.pdfviewer.util.ArrayUtils
+com.xuanyuan.pdfviewer.scroll.DefaultScrollHandle:
+    private static final int HANDLE_LONG
+    private static final int HANDLE_SHORT
+    private static final int DEFAULT_TEXT_SIZE
+com.xuanyuan.pdfviewer.util.Util:
+    public void <init>()
+    private static final int DEFAULT_BUFFER_SIZE
+com.xuanyuan.pdfviewer.exception.FileNotFoundException
+com.xuanyuan.pdfviewer.model.LinkTapEvent:
+    public float getOriginalX()
+    public float getOriginalY()
+    public float getDocumentX()
+    public float getDocumentY()
+    public android.graphics.RectF getMappedLinkRect()
+com.xuanyuan.pdfviewer.util.MathUtils:
+    private void <init>()
+    public static int limit(int,int,int)
+    public static int max(int,int)
+    public static int min(int,int)
+    private static final int BIG_ENOUGH_INT
+    private static final double BIG_ENOUGH_FLOOR
+    private static final double BIG_ENOUGH_CEIL
+com.xuanyuan.pdfviewer.RenderingHandler:
+    public static synthetic com.xuanyuan.pdf.PDFView access$000(com.xuanyuan.pdfviewer.RenderingHandler)
+    public void addRenderingTask(int,float,float,android.graphics.RectF,boolean,int,boolean,boolean)
+    public void stop()
+    public void start()
+    public final void calculateBounds(int,int,android.graphics.RectF)
+com.xuanyuan.pdfviewer.scroll.ScrollHandle:
+    public abstract void destroyLayout()
+    public abstract boolean shown()
+    public abstract void show()
+    public abstract void hide()
+    public abstract void hideDelayed()
+com.xuanyuan.pdfviewer.util.Constants
+com.xuanyuan.pdfviewer.util.Constants$Cache
+com.xuanyuan.pdfviewer.PagesLoader$GridSize:
+    public final synthetic com.xuanyuan.pdfviewer.PagesLoader this$0
+com.xuanyuan.pdfviewer.DecodingAsyncTask:
+    public varargs java.lang.Throwable doInBackground()
+    public void onPostExecute(java.lang.Throwable)
+    public final com.shockwave.pdfium.util.Size getViewSize(com.xuanyuan.pdf.PDFView)
+com.xuanyuan.pdfviewer.PagesLoader:
+    public void loadPages()
+    public final void getPageColsRows(com.xuanyuan.pdfviewer.PagesLoader$GridSize,int)
+    public final void calculatePartSize(com.xuanyuan.pdfviewer.PagesLoader$GridSize)
+    public final java.util.List getRenderRangeList(float,float,float,float)
+    public final void loadVisible()
+    public final int loadPage(int,int,int,int,int,int)
+    public final boolean loadCell(int,int,int,float,float)
+    public final void loadThumbnail(int)
+com.xuanyuan.pdfviewer.DragPinchManager:
+    public void enable()
+    public void disable()
+    public void disableLongpress()
+    public final boolean checkLinkTapped(float,float)
+    public final void startPageFling(android.view.MotionEvent,android.view.MotionEvent,float,float)
+    public final void onScrollEnd()
+    public final void onBoundedFling(float,float)
+    public final void hideHandle()
+    public final boolean checkDoPageFling(float,float)
+com.xuanyuan.pdfviewer.util.PageSizeCalculator:
+    public com.shockwave.pdfium.util.SizeF calculate(com.shockwave.pdfium.util.Size)
+    public com.shockwave.pdfium.util.SizeF getOptimalMaxWidthPageSize()
+    public com.shockwave.pdfium.util.SizeF getOptimalMaxHeightPageSize()
+com.xuanyuan.pdfviewer.model.PagePart:
+    public int getCacheOrder()
+    public int getPage()
+    public android.graphics.Bitmap getRenderedBitmap()
+    public android.graphics.RectF getPageRelativeBounds()
+    public boolean isThumbnail()
+    public void setCacheOrder(int)
+com.xuanyuan.pdfviewer.PagesLoader$RenderRange:
+    public final synthetic com.xuanyuan.pdfviewer.PagesLoader this$0
+com.xuanyuan.pdfviewer.PagesLoader$Holder:
+    public final synthetic com.xuanyuan.pdfviewer.PagesLoader this$0
+com.xuanyuan.pdfviewer.util.FileUtils:
+    public static java.io.File fileFromAsset(android.content.Context,java.lang.String)
+    public static void copy(java.io.InputStream,java.io.File)
+    public static float limit(float,float,float)
+    public static byte[] toByteArray(java.io.InputStream)
+com.xuanyuan.pdfviewer.RenderingHandler$RenderingTask:
+    public final synthetic com.xuanyuan.pdfviewer.RenderingHandler this$0
+com.xuanyuan.pdfviewer.util.Constants$Pinch
+com.xuanyuan.pdfviewer.CacheManager:
+    public static com.xuanyuan.pdfviewer.model.PagePart find(java.util.PriorityQueue,com.xuanyuan.pdfviewer.model.PagePart)
+    public void cachePart(com.xuanyuan.pdfviewer.model.PagePart)
+    public void makeANewSet()
+    public void cacheThumbnail(com.xuanyuan.pdfviewer.model.PagePart)
+    public boolean containsThumbnail(int,android.graphics.RectF)
+    public java.util.List getPageParts()
+    public java.util.List getThumbnails()
+    public void recycle()
+    public final void addWithoutDuplicates(java.util.Collection,com.xuanyuan.pdfviewer.model.PagePart)
+com.xuanyuan.pdfviewer.scroll.DefaultScrollHandle:
+    public void destroyLayout()
+    public void show()
+    public void hide()
+    public final void calculateMiddle()
+    public final boolean isPDFViewReady()
+com.xuanyuan.pdfviewer.util.Util
+com.xuanyuan.pdfviewer.util.PageSizeCalculator$1
+com.xuanyuan.pdfviewer.PdfFile:
+    public int getPagesCount()
+    public com.shockwave.pdfium.util.SizeF getMaxPageSize()
+    public float getDocLen(float)
+    public float getPageSpacing(int,float)
+    public boolean openPage(int)
+    public boolean pageHasError(int)
+    public void renderPageBitmap(android.graphics.Bitmap,int,android.graphics.Rect,boolean)
+    public com.shockwave.pdfium.PdfDocument$Meta getMetaData()
+    public java.util.List getBookmarks()
+    public java.util.List getPageLinks(int)
+    public android.graphics.RectF mapRectToDevice(int,int,int,int,int,android.graphics.RectF)
+    public void dispose()
+    public final void prepareAutoSpacing(com.shockwave.pdfium.util.Size)
+    public final void prepareDocLen()
+    public final void preparePagesOffset()
+com.xuanyuan.pdfviewer.AnimationManager:
+    public static synthetic com.xuanyuan.pdf.PDFView access$000(com.xuanyuan.pdfviewer.AnimationManager)
+    public void startFlingAnimation(int,int,int,int,int,int,int,int)
+    public void startPageFlingAnimation(float)
+    public void computeFling()
+    public boolean isFlinging()
+    public final void hideHandle()
+com.xuanyuan.pdfviewer.model.LinkTapEvent
+com.xuanyuan.pdfviewer.link.DefaultLinkHandler:
+    public static void <clinit>()
+    public void handleLinkEvent(com.xuanyuan.pdfviewer.model.LinkTapEvent)
+    public final void handleUri(java.lang.String)
+    public final void handlePage(int)
+com.xuanyuan.pdfviewer.util.MathUtils
+com.xuanyuan.pdfviewer.CacheManager$PagePartComparator:
+    public int compare(com.xuanyuan.pdfviewer.model.PagePart,com.xuanyuan.pdfviewer.model.PagePart)
+    public final synthetic com.xuanyuan.pdfviewer.CacheManager this$0
+com.xuanyuan.pdfviewer.link.LinkHandler:
+    public abstract void handleLinkEvent(com.xuanyuan.pdfviewer.model.LinkTapEvent)
+com.xuanyuan.pdfviewer.listener.Callbacks:
+    public void callOnLoadComplete(int)
+    public com.xuanyuan.pdfviewer.listener.OnErrorListener getOnError()
+    public boolean callOnPageError(int,java.lang.Throwable)
+    public void callOnRender(int)
+    public void callOnPageChange(int,int)
+    public void callOnPageScroll(int,float)
+    public com.xuanyuan.pdfviewer.listener.OnDrawListener getOnDraw()
+    public com.xuanyuan.pdfviewer.listener.OnDrawListener getOnDrawAll()
+    public boolean callOnTap(android.view.MotionEvent)
+    public void callOnLongPress(android.view.MotionEvent)
+    public void setLinkHandler(com.xuanyuan.pdfviewer.link.LinkHandler)
+    public void callLinkHandler(com.xuanyuan.pdfviewer.model.LinkTapEvent)

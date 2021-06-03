@@ -1,0 +1,455 @@
+# The proguard configuration file for the following section is D:\GitSpace\EpubDemo\Pdfview\build\intermediates\proguard-files\proguard-android-optimize.txt-4.1.3
+# This is a configuration file for ProGuard.
+# http://proguard.sourceforge.net/index.html#manual/usage.html
+#
+# Starting with version 2.2 of the Android plugin for Gradle, this file is distributed together with
+# the plugin and unpacked at build-time. The files in $ANDROID_HOME are no longer maintained and
+# will be ignored by new version of the Android plugin for Gradle.
+
+# Optimizations: If you don't want to optimize, use the proguard-android.txt configuration file
+# instead of this one, which turns off the optimization flags.
+# Adding optimization introduces certain risks, since for example not all optimizations performed by
+# ProGuard works on all versions of Dalvik.  The following flags turn off various optimizations
+# known to have issues, but the list may not be complete or up to date. (The "arithmetic"
+# optimization can be used if you are only targeting Android 2.0 or later.)  Make sure you test
+# thoroughly if you go this route.
+-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
+-optimizationpasses 5
+-allowaccessmodification
+
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-verbose
+
+# Preserve some attributes that may be required for reflection.
+-keepattributes *Annotation*,Signature,InnerClasses,EnclosingMethod
+
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+-keep public class com.google.android.vending.licensing.ILicensingService
+-dontnote com.android.vending.licensing.ILicensingService
+-dontnote com.google.vending.licensing.ILicensingService
+-dontnote com.google.android.vending.licensing.ILicensingService
+
+# For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
+-keepclasseswithmembernames,includedescriptorclasses class * {
+    native <methods>;
+}
+
+# Keep setters in Views so that animations can still work.
+-keepclassmembers public class * extends android.view.View {
+    void set*(***);
+    *** get*();
+}
+
+# We want to keep methods in Activity that could be used in the XML attribute onClick.
+-keepclassmembers class * extends android.app.Activity {
+    public void *(android.view.View);
+}
+
+# For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    public static final ** CREATOR;
+}
+
+# Preserve annotated Javascript interface methods.
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# The support libraries contains references to newer platform versions.
+# Don't warn about those in case this app is linking against an older
+# platform version. We know about them, and they are safe.
+-dontnote android.support.**
+-dontnote androidx.**
+-dontwarn android.support.**
+-dontwarn androidx.**
+
+# This class is deprecated, but remains for backward compatibility.
+-dontwarn android.util.FloatMath
+
+# Understand the @Keep support annotation.
+-keep class android.support.annotation.Keep
+-keep class androidx.annotation.Keep
+
+-keep @android.support.annotation.Keep class * {*;}
+-keep @androidx.annotation.Keep class * {*;}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <init>(...);
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <init>(...);
+}
+
+# These classes are duplicated between android.jar and org.apache.http.legacy.jar.
+-dontnote org.apache.http.**
+-dontnote android.net.http.**
+
+# These classes are duplicated between android.jar and core-lambda-stubs.jar.
+-dontnote java.lang.invoke.**
+
+# End of content from D:\GitSpace\EpubDemo\Pdfview\build\intermediates\proguard-files\proguard-android-optimize.txt-4.1.3
+# The proguard configuration file for the following section is D:\GitSpace\EpubDemo\Pdfview\proguard-rules.pro
+# Add project specific ProGuard rules here.
+# You can control the set of applied configuration files using the
+# proguardFiles setting in build.gradle.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+
+
+######   混淆说明  ############################
+# 1. 保持对应包下的包名+方法名+变量名,方法中内容会混淆
+# -keep class 包名.* { *; }
+
+# 2. 保持对应包下的 类名+public方法名 不混淆,其他都混淆
+#-keep class 包名.* {public <methods>;}
+
+###############################################
+
+
+
+#-keep class me.jessyan.autosize.external.MyAutoSize { *; }
+
+## 混淆规则解释  START  #################################################################
+
+# 包名下类名不混淆，子包下的类名会混淆。方法名与变量都会混淆
+#-keep class me.jessyan.autosize.expose.*
+
+# 父包与子包下类名不混淆,方法名与变量都会混淆
+#-keep class me.jessyan.autosize.**
+
+# 保持对应包下的包名+方法名+变量名,方法中内容会混淆
+-keep class com.xuanyuan.pdf.** {*;}
+
+## 混淆规则解释  END    #################################################################
+
+###################################################################
+#                                                                 #
+# 基本指令区域（没什么别的需求不需要动）      STRAT                  #
+#                                                                 #
+###################################################################
+# 表示proguard对代码进行迭代优化的次数，在0~7之间，默认为5，一般不做修改
+-optimizationpasses 5
+
+# 压缩用以减小应用体积，移除未被使用的类和成员，并且会在优化动作执行之后再次执行
+#（因为优化后可能会再次暴露一些未被使用的类和成员）。
+#-dontshrink  压缩（Shrinking）：默认开启
+#-dontoptimize  关闭优化, 程序默认开启优化,混淆在优化之后
+
+# 混淆（Obfuscation）：默认开启，增大反编译难度，类和类成员会被随机命名，除非用keep保护。
+# -dontobfuscate 关闭混淆
+
+
+# 混合时不使用大小写混合，混合后的类名为小写
+-dontusemixedcaseclassnames
+
+# 指定不去忽略非公共库的类
+-dontskipnonpubliclibraryclasses
+
+# 这句话能够使我们的项目混淆后产生映射文件
+# 包含有类名->混淆后类名的映射关系
+-verbose
+
+# 指定不去忽略非公共库的类成员
+-dontskipnonpubliclibraryclassmembers
+
+# 不做预校验，preverify是proguard的四个步骤之一，Android不需要preverify，去掉这一步能够加快混淆速度。
+-dontpreverify
+
+
+# 保留Annotation不混淆
+-keepattributes *Annotation*,InnerClasses
+
+# 避免混淆泛型
+-keepattributes Signature
+
+# 抛出异常时保留代码行号
+-keepattributes SourceFile,LineNumberTable
+
+# 指定混淆是采用的算法，后面的参数是一个过滤器
+# 这个过滤器是谷歌推荐的算法，一般不做更改
+-optimizations !code/simplification/cast,!field/*,!class/merging/*
+
+###################################################################
+#                                                                 #
+# 基本指令区域（没什么别的需求不需要动）      END                    #
+#                                                                 #
+###################################################################
+
+
+
+
+###################################################################
+#                                                                 #
+# Android开发中一些需要保留的公共部分（没什么别的需求不需要动）START  #
+#                                                                 #
+###################################################################
+
+# 保留我们使用的四大组件，自定义的Application等等这些类不被混淆
+# 因为这些子类都有可能被外部调用
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends androidx.appcompat.app.AppCompatActivity
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.view.View
+
+# 保留support下的所有类及其内部类
+-keep class androidx.appcompat.app.*
+
+# 保留继承的
+-keep public class * extends android.support.*
+
+# 保留R下面的资源
+-keep class **.R$* {*;}
+
+# 保留本地native方法不被混淆
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# 保留在Activity中的方法参数是view的方法，
+# 这样一来我们在layout中写的onClick就不会被影响
+-keepclassmembers class * extends android.app.Activity{
+    public void *(android.view.View);
+}
+
+# 保留枚举类不被混淆
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# 保留我们自定义控件（继承自View）不被混淆
+-keep public class * extends android.view.View{
+    *** get*();
+    void set*(***);
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+# 保留Parcelable序列化类不被混淆
+-keep class * implements android.os.Parcelable {
+
+}
+
+# 保留Serializable序列化的类不被混淆
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    !private <fields>;
+    !private <methods>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+# 对于带有回调函数的onXXEvent、**On*Listener的，不能被混淆
+-keepclassmembers class * {
+    void *(**On*Event);
+    void *(**On*Listener);
+}
+###################################################################
+#                                                                 #
+# Android开发中一些需要保留的公共部分（没什么别的需求不需要动）  END  #
+#                                                                 #
+###################################################################
+
+
+
+
+# webView处理，项目中没有使用到webView忽略即可
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#    public *;
+#}
+#-keepclassmembers class * extends android.webkit.webViewClient {
+#    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+#    public boolean *(android.webkit.WebView, java.lang.String);
+#}
+#-keepclassmembers class * extends android.webkit.webViewClient {
+#    public void *(android.webkit.webView, jav.lang.String);
+#}
+
+# 移除Log类打印各个等级日志的代码，打正式包的时候可以做为禁log使用，这里可以作为禁止log打印的功能使用
+# 记得proguard-android.txt中一定不要加-dontoptimize才起作用
+# 另外的一种实现方案是通过BuildConfig.DEBUG的变量来控制
+#-assumenosideeffects class android.util.Log {
+#    public static int v(...);
+#    public static int i(...);
+#    public static int w(...);
+#    public static int d(...);
+#    public static int e(...);
+#}
+
+
+
+
+# End of content from D:\GitSpace\EpubDemo\Pdfview\proguard-rules.pro
+# The proguard configuration file for the following section is D:\GitSpace\EpubDemo\Pdfview\build\intermediates\aapt_proguard_file\release\aapt_rules.txt
+# Generated by the gradle plugin
+
+# End of content from D:\GitSpace\EpubDemo\Pdfview\build\intermediates\aapt_proguard_file\release\aapt_rules.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\ffb1ed949ed2e1c9bda30a07f40f3960\media-1.0.0\proguard.txt
+# Copyright (C) 2017 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Prevent Parcelable objects from being removed or renamed.
+-keep class android.support.v4.media.** implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+
+# Prevent Parcelable objects from being removed or renamed.
+-keep class androidx.media.** implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\ffb1ed949ed2e1c9bda30a07f40f3960\media-1.0.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\c50fd1189fc77f0df6628dbf079d9769\coordinatorlayout-1.0.0\proguard.txt
+# Copyright (C) 2016 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# CoordinatorLayout resolves the behaviors of its child components with reflection.
+-keep public class * extends androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior {
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>();
+}
+
+# Make sure we keep annotations for CoordinatorLayout's DefaultBehavior and ViewPager's DecorView
+-keepattributes *Annotation*
+
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\c50fd1189fc77f0df6628dbf079d9769\coordinatorlayout-1.0.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\70a52ceefb0f2759eaae8bc5eab00a64\core-1.3.2\proguard.txt
+# Never inline methods, but allow shrinking and obfuscation.
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.WindowInsetsCompat$Impl* {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.WindowInsetsCompat$BuilderImpl* {
+  <methods>;
+}
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\70a52ceefb0f2759eaae8bc5eab00a64\core-1.3.2\proguard.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\6f00df2a8da783cd016f7f3b0df6c0da\lifecycle-runtime-2.0.0\proguard.txt
+-keepattributes *Annotation*
+
+-keepclassmembers enum androidx.lifecycle.Lifecycle$Event {
+    <fields>;
+}
+
+-keep !interface * implements androidx.lifecycle.LifecycleObserver {
+}
+
+-keep class * implements androidx.lifecycle.GeneratedAdapter {
+    <init>(...);
+}
+
+-keepclassmembers class ** {
+    @androidx.lifecycle.OnLifecycleEvent *;
+}
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\6f00df2a8da783cd016f7f3b0df6c0da\lifecycle-runtime-2.0.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\fe278dc565edb99860c4ed330e20ae7e\versionedparcelable-1.1.0\proguard.txt
+-keep public class * implements androidx.versionedparcelable.VersionedParcelable
+-keep public class android.support.**Parcelizer { *; }
+-keep public class androidx.**Parcelizer { *; }
+-keep public class androidx.versionedparcelable.ParcelImpl
+
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\fe278dc565edb99860c4ed330e20ae7e\versionedparcelable-1.1.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\45420648e2f7ca4d472c2b4c1c0828d1\lifecycle-viewmodel-2.0.0\proguard.txt
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
+    <init>();
+}
+
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+    <init>(android.app.Application);
+}
+
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\45420648e2f7ca4d472c2b4c1c0828d1\lifecycle-viewmodel-2.0.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\f92c45a8b044c061cb9bea4faf1db2d6\rules\lib\META-INF\proguard\androidx-annotations.pro
+-keep,allowobfuscation @interface androidx.annotation.Keep
+-keep @androidx.annotation.Keep class * {*;}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <init>(...);
+}
+
+# End of content from C:\Users\LUOFAXIN\.gradle\caches\transforms-2\files-2.1\f92c45a8b044c061cb9bea4faf1db2d6\rules\lib\META-INF\proguard\androidx-annotations.pro
+# The proguard configuration file for the following section is <unknown>
+-ignorewarnings
+-keep class **.R
+-keep class **.R$* {*;}
+# End of content from <unknown>

@@ -11,12 +11,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/epublib" />
+            <option value="$PROJECT_DIR$/EpubBook" />
+            <option value="$PROJECT_DIR$/EpubDemo" />
+            <option value="$PROJECT_DIR$/Pdfview" />
+            <option value="$PROJECT_DIR$/android-pdf-viewer" />
+            <option value="$PROJECT_DIR$/pdfdemo" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

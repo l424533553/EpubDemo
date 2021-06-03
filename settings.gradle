@@ -1,4 +1,6 @@
-include ':epublib'
-include ':app'
-//include ':epublibrary'
-rootProject.name = "EpubDemo"
+include ':EpubBook'
+include ':EpubDemo'
+include ':Pdfview'
+include ':android-pdf-viewer'
+rootProject.name = "BookRead"
+include ':pdfdemo'
